@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabScaffold: View {
+struct TabScaffoldView: View {
     @State var searchText = ""
     @State var showCameraSource = false;
     var body: some View {
@@ -21,13 +21,9 @@ struct TabScaffold: View {
                     .tabItem {
                         Label("List", systemImage: "photo")
                     }
-                HomeView()
+                EditPixView()
                     .tabItem {
                         Label("Add", systemImage: "plus.circle.fill")
-                    }
-                    .confirmationDialog("Where should we get your new Pix from?", isPresented: $showCameraSource){
-                        Button("Use your phone's gallery") {}
-                        Button("Use your phone's camera") {}
                     }
             }
         }.searchable(text: $searchText, prompt: "Search for...")
@@ -35,5 +31,5 @@ struct TabScaffold: View {
 }
 
 #Preview {
-    TabScaffold()
+    TabScaffoldView()
 }

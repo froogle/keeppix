@@ -25,7 +25,7 @@ struct keeppixApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabScaffold()
+            TabScaffoldView()
         }
         .modelContainer(sharedModelContainer)
     }
