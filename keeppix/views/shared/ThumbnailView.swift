@@ -9,7 +9,21 @@ import SwiftUI
 
 struct ThumbnailView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack( alignment: .top) {
+            Image(systemName: "photo.artframe")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+                .font(.caption2)
+                .foregroundColor(.white)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .padding(2)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
+                )
+                .opacity(0.95)
+        }.padding(0)
     }
 }
 
