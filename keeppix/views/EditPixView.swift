@@ -6,23 +6,53 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct EditPixView: View {
-    @State private var isShowingPixSource = false
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var isPresented: Bool
+    
+    @State private var isShowingPicker = true
+    @State private var photosPickerItem: PhotosPickerItem?
+    @State private var selectedImage: UIImage?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onAppear {
-                isShowingPixSource = true
+        VStack {
+            if let selectedImage = selectedImage {
+                
+                HStack {
+                    Button("Back") { dismiss() }
+                    Spacer()
+                }
+                
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .scaledToFit()
+                Spacer()
             }
-            .confirmationDialog("Where should we get your new Pix from?", isPresented: $isShowingPixSource, titleVisibility: .visible){
-                Button("Use your phone's gallery") {}
-                Button("Use your phone's camera") {}
+        }
+        .onChange(of: photosPickerItem) { _, _ in
+            Task {
+                if let photosPickerItem,
+                   let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                    if let image = UIImage(data: data) {
+                        selectedImage = image
+                    }
+                }
+                photosPickerItem = nil
             }
+        }
+        .onChange(of: isShowingPicker) { _, _ in
+            if photosPickerItem == nil {
+                isPresented = false
+            }
+        }
+        .photosPicker(isPresented: $isShowingPicker, selection: $photosPickerItem)
+        
     }
-    
-    
 }
 
 #Preview {
-    EditPixView()
+    EditPixView(isPresented: .constant(true))
 }
