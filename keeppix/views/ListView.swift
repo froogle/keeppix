@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ListView: View {
+    @Query() var pixs: [Pix]
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack(alignment: .top, spacing: 30) {
@@ -19,8 +22,8 @@ struct ListView: View {
             
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(0..<35) { index in
-                        ThumbnailView()
+                    ForEach(pixs) { pix in
+                        ThumbnailView(pix: pix)
                     }
                 }
             }

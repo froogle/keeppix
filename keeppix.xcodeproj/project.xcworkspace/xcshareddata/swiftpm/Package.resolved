@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "tagfield",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Changemin/TagField",
+      "state" : {
+        "revision" : "53bc48d6f6cf64b1b0bdf525db7dd40108da6856",
+        "version" : "1.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}

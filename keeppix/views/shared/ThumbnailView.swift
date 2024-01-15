@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ThumbnailView: View {
+    @State var pix: Pix
+    
     var body: some View {
         ZStack( alignment: .top) {
-            Image(systemName: "photo.artframe")
+            Image(uiImage: UIImage(data: pix.imageData!)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+            Text(pix.pixDescription)
+                .frame(maxWidth: .infinity)
                 .font(.caption2)
                 .foregroundColor(.white)
                 .lineLimit(1)
@@ -23,10 +26,11 @@ struct ThumbnailView: View {
                     LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
                 )
                 .opacity(0.95)
+            
         }.padding(0)
     }
 }
 
-#Preview {
-    ThumbnailView()
-}
+//#Preview {
+//    ThumbnailView()
+//}
