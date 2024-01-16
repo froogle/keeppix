@@ -32,7 +32,7 @@ struct HomeView: View {
                         .cornerRadius(10)
                         )
                         .offset(y: 5)
-                        .opacity(0.95)
+                        .opacity(0.90)
                 }.padding(0)
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
