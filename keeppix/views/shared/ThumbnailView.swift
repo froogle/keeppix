@@ -12,29 +12,38 @@ struct ThumbnailView: View {
     
     var body: some View {
         ZStack( alignment: .top) {
-            if let imageData = pix.imageData {
-                Image(uiImage: UIImage(data: imageData)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+        if let imageData = pix.imageData {
+            Color.clear
+              .aspectRatio(1, contentMode: .fit)
+              .background(Image(uiImage: UIImage(data: imageData)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill))
+              .clipped()
             } else {
                 Image(systemName: "photo.artframe")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
             }
 
-            Text(pix.pixDescription)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity)
-                .font(.caption2)
-                .foregroundColor(.white)
-                .truncationMode(.tail)
-                .lineLimit(1)
-                .padding(5)
-                .background(
+            
+            HStack(alignment: .top, spacing: 0) {
+                Text(pix.pixDescription)
+                    .font(.caption2)
+                    .foregroundColor(.white)
+                    .truncationMode(.tail)
+                    .lineLimit(1)
+      
+                Spacer()
+            }
+            
+            .frame(maxWidth: .infinity)
+            .padding(7)
+            .background(
                     LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
                 )
-                .cornerRadius(5)
-                .opacity(0.95)
+            .opacity(0.95)
+            .cornerRadius(5)
+
             
         }.padding(0)
     }
