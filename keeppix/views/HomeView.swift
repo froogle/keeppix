@@ -28,9 +28,8 @@ struct HomeView: View {
                         .lineLimit(1)
                         .truncationMode(.tail)
                         .padding(10)
-                        .background(
-                            LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
-                                .cornerRadius(10)
+                        .background(LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
+                        .cornerRadius(10)
                         )
                         .offset(y: 5)
                         .opacity(0.95)

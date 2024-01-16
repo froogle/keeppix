@@ -17,7 +17,7 @@ class Pix {
     var createdAt: Date
     var updatedAt: Date
     
-    init(id: String? = nil, createdAt: Date = Date.now, updatedAt: Date = Date.now, pixDescription: String, tags: [String], imageUrl: String) {
+    init(id: String? = nil, createdAt: Date = Date.now, updatedAt: Date = Date.now, pixDescription: String, tags: [String]) {
         self.id = id ?? UUID().uuidString
         self.pixDescription = pixDescription
         self.tags = []

@@ -19,7 +19,7 @@ struct EditPixView: View {
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var selectedImage: UIImage?
 
-    @State private var pix = Pix(pixDescription: "", tags: [], imageUrl: "")
+    @State private var pix = Pix(pixDescription: "", tags: [])
     
     @State private var tags: [String] = []
     var body: some View {

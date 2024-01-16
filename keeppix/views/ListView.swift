@@ -21,7 +21,7 @@ struct ListView: View {
             }.padding([.bottom], 10)
             
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(pixs) { pix in
                         ThumbnailView(pix: pix)
                     }
@@ -35,5 +35,14 @@ struct ListView: View {
 }
 
 #Preview {
-    ListView()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Pix.self, configurations: config)
+
+    for i in 1..<10 {
+        let pix = Pix(pixDescription: "Test Pix \(i)", tags: ["test"])
+        container.mainContext.insert(pix)
+    }
+
+    return ListView()
+        .modelContainer(container)
 }
