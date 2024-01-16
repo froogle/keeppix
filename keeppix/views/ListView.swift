@@ -14,9 +14,9 @@ struct ListView: View {
     var body: some View {
         VStack(alignment: .leading){
             HStack(alignment: .top, spacing: 30) {
+                Button( "Recent", action: {} ).font(.caption)
                 Button( "Frequent", action: {} ).font(.caption)
                 Button( "Newest", action: {} ).font(.caption)
-                Button( "Popular", action: {} ).font(.caption)
                 Spacer()
             }.padding([.bottom], 10)
             

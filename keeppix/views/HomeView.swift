@@ -12,15 +12,15 @@ struct HomeView: View {
         ScrollView {
             VStack(alignment: .leading){
                 HStack(alignment: .top, spacing: 30) {
+                    Button( "Recent", action: {} ).font(.caption)
                     Button( "Frequent", action: {} ).font(.caption)
                     Button( "Newest", action: {} ).font(.caption)
-                    Button( "Popular", action: {} ).font(.caption)
                     Spacer()
                 }.padding([.bottom], 10)
                 
                 ZStack( alignment: .top) {
                     Image(systemName: "photo.artframe")
-                        .resizable()
+                        .resizable() 
                         .aspectRatio(contentMode: .fit)
                     Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
                         .font(.body)
