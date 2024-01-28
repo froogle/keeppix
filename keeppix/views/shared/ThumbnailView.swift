@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ThumbnailView: View {
     @State var pix: Pix
+    @State var captionFont: Font = .caption2
+    @State var showCaption = true
     
     var body: some View {
         ZStack( alignment: .top) {
@@ -31,23 +33,23 @@ struct ThumbnailView: View {
                     .cornerRadius(10.0)
             }
             
-            
-            HStack(alignment: .top, spacing: 0) {
-                Text(pix.pixDescription)
-                    .font(.caption2)
-                    .foregroundColor(.white)
-                    .truncationMode(.tail)
-                    .lineLimit(1)
-                Spacer()
+            if (showCaption) {
+                HStack(alignment: .top, spacing: 0) {
+                    Text(pix.pixDescription)
+                        .font(captionFont)
+                        .foregroundColor(.white)
+                        .truncationMode(.tail)
+                        .lineLimit(1)
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+                .padding(7)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
+                )
+                .opacity(0.9)
+                .cornerRadius(5)
             }
-            
-            .frame(maxWidth: .infinity)
-            .padding(7)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
-            )
-            .opacity(0.9)
-            .cornerRadius(5)
             
             
         }.padding(0)

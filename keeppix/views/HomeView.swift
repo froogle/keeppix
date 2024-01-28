@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
+
 
 struct HomeView: View {
+    @Environment(\.modelContext) private var modelContext
+    @State private var pixs = [Pix]()
+    @State private var previewPixs = ArraySlice<Pix>()
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
@@ -18,43 +24,48 @@ struct HomeView: View {
                     Spacer()
                 }.padding([.bottom], 10)
                 
-                ZStack( alignment: .top) {
-                    Image(systemName: "photo.artframe")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
-                        .font(.body)
-                        .foregroundColor(.white)
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .padding(10)
-                        .background(LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
-                        .cornerRadius(10)
-                        )
-                        .offset(y: 5)
-                        .opacity(0.90)
-                }.padding(0)
                 
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach(0..<6) { index in
-                        Image(systemName: "square")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding([.leading, .trailing], 5)
-                    }
+                // TODO: If we don't have any pixs, don't do this...
+                if let pix = pixs.first {
+                    ThumbnailView(pix: pix, captionFont: .body)
                 }
                 
-                
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                    // TODO: Need to loop through pixs except first
+                    ForEach (previewPixs) { pix in
+                        ThumbnailView(pix: pix, showCaption: false)
+                    }
+                }
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding( .all )
         }
-        
-        
+        .onAppear {
+            loadPixs()
+        }
     }
+    
+    private func loadPixs() {
+        var fetchDescriptor = FetchDescriptor<Pix>( )
+        fetchDescriptor.fetchLimit = 7
+        do {
+            pixs = try modelContext.fetch(fetchDescriptor)
+            previewPixs = pixs.dropFirst(1)
+        } catch {
+            pixs = []
+        }
+    }
+    
 }
 
 #Preview {
-    HomeView()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Pix.self, configurations: config)
+    
+    for i in 1..<10 {
+        let pix = Pix(pixDescription: "Test Pix \(i)", tags: ["test"])
+        container.mainContext.insert(pix)
+    }
+    return HomeView().modelContainer(container)
 }
