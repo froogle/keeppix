@@ -17,6 +17,7 @@
 		6FC207622B41772200E2918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC207612B41772200E2918F /* Assets.xcassets */; };
 		6FC207652B41772200E2918F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC207642B41772200E2918F /* Preview Assets.xcassets */; };
 		6FC2076F2B42D03200E2918F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC2076E2B42D03200E2918F /* HomeView.swift */; };
+		6FE1565E2B8BD534005FEF3A /* PixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE1565D2B8BD534005FEF3A /* PixView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		6FC207612B41772200E2918F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FC207642B41772200E2918F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6FC2076E2B42D03200E2918F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6FE1565D2B8BD534005FEF3A /* PixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				6F11F1002B42D3F000757A12 /* TabScaffoldView.swift */,
 				6F42A1182B44476000B87008 /* ListView.swift */,
 				6F42A11D2B454BDA00B87008 /* EditPixView.swift */,
+				6FE1565D2B8BD534005FEF3A /* PixView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				6F42A1192B44476000B87008 /* ListView.swift in Sources */,
 				6F0F8A332B55807000A5D1F9 /* Pix.swift in Sources */,
 				6F11F1012B42D3F000757A12 /* TabScaffoldView.swift in Sources */,
+				6FE1565E2B8BD534005FEF3A /* PixView.swift in Sources */,
 				6F42A11C2B444D4000B87008 /* ThumbnailView.swift in Sources */,
 				6FC2075C2B41772100E2918F /* keeppixApp.swift in Sources */,
 				6F42A11E2B454BDA00B87008 /* EditPixView.swift in Sources */,

@@ -27,11 +27,13 @@ struct HomeView: View {
                 
                 // TODO: If we don't have any pixs, don't do this...
                 if let pix = pixs.first {
-                    ThumbnailView(pix: pix, captionFont: .body)
+                    NavigationLink(destination: PixView(pix: pix)) {
+                        ThumbnailView(pix: pix, captionFont: .body)
+                    }
+                    
                 }
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    // TODO: Need to loop through pixs except first
                     ForEach (previewPixs) { pix in
                         ThumbnailView(pix: pix, showCaption: false)
                     }
