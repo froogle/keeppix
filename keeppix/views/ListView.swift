@@ -23,7 +23,9 @@ struct ListView: View {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(pixs) { pix in
-                        ThumbnailView(pix: pix)
+                        NavigationLink( destination: PixView(pix: pix)) {
+                            ThumbnailView(pix: pix)
+                        }
                     }
                 }
             }

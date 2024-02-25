@@ -35,7 +35,9 @@ struct HomeView: View {
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach (previewPixs) { pix in
-                        ThumbnailView(pix: pix, showCaption: false)
+                        NavigationLink( destination: PixView(pix: pix)) {
+                            ThumbnailView(pix: pix, showCaption: false)
+                        }
                     }
                 }
                 Spacer()
