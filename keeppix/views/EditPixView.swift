@@ -9,6 +9,8 @@ import SwiftUI
 import PhotosUI
 import TagField
 
+
+// MARK: EditPixView layout
 struct EditPixView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) private var context
@@ -71,6 +73,7 @@ struct EditPixView: View {
     }
 }
 
+// MARK: EditPixView functionality
 extension EditPixView {
     func togglePhotosPicker() {
         if photosPickerItem == nil {

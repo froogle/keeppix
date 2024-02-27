@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: PixView layout.
 struct PixView: View {
     @State private var zoomScale: CGFloat = 1
     @State private var previousZoomScale: CGFloat = 1
@@ -38,6 +39,7 @@ struct PixView: View {
     }
 }
 
+// MARK: Zoomable image view.
 extension PixView {
     var pixView: some View {
         GeometryReader { proxy in
@@ -56,6 +58,7 @@ extension PixView {
     }
 }
 
+// MARK: Functionality for the PixView
 extension PixView {
     func loadPix() {
         if let imageData = pix.imageData {

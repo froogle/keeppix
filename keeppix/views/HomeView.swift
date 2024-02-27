@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-
+// Mark: HomeView layout
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var pixs = [Pix]()
@@ -52,6 +52,7 @@ struct HomeView: View {
 
 }
 
+// MARK: HomeView functionality
 private extension HomeView {
     func loadPixs() {
         var fetchDescriptor = FetchDescriptor<Pix>( )

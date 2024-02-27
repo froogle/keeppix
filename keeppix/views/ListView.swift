@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+// MARK: ListView layout.
 struct ListView: View {
     @Query() var pixs: [Pix]
     
