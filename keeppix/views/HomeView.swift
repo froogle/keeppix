@@ -49,8 +49,11 @@ struct HomeView: View {
             loadPixs()
         }
     }
-    
-    private func loadPixs() {
+
+}
+
+private extension HomeView {
+    func loadPixs() {
         var fetchDescriptor = FetchDescriptor<Pix>( )
         fetchDescriptor.fetchLimit = 7
         do {
@@ -60,7 +63,6 @@ struct HomeView: View {
             pixs = []
         }
     }
-    
 }
 
 #Preview {

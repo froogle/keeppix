@@ -60,23 +60,33 @@ struct EditPixView: View {
         .padding()
         .onChange(of: photosPickerItem) { _, _ in
             Task {
-                if let photosPickerItem,
-                   let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
-                    if let image = UIImage(data: data) {
-                        pix.imageData = data
-                        selectedImage = image
-                    }
-                }
-                photosPickerItem = nil
+                await choosePhoto()
             }
         }
         .onChange(of: isShowingPicker) { _, _ in
-            if photosPickerItem == nil {
-                isPresented = false
-            }
+            togglePhotosPicker()
         }
         .photosPicker(isPresented: $isShowingPicker, selection: $photosPickerItem)
         
+    }
+}
+
+extension EditPixView {
+    func togglePhotosPicker() {
+        if photosPickerItem == nil {
+            isPresented = false
+        }
+    }
+    
+    func choosePhoto() async {
+        if let photosPickerItem,
+           let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+            if let image = UIImage(data: data) {
+                pix.imageData = data
+                selectedImage = image
+            }
+        }
+        photosPickerItem = nil
     }
 }
 
