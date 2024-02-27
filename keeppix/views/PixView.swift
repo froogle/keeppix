@@ -9,8 +9,8 @@ import SwiftUI
 
 // MARK: PixView layout.
 struct PixView: View {
-    @State private var zoomScale: CGFloat = 1
-    @State private var previousZoomScale: CGFloat = 1
+    @State private var zoomScale: CGFloat = 2
+    @State private var previousZoomScale: CGFloat = 2
     @State private var image: Image?
     
     private let minZoomScale: CGFloat = 1
@@ -42,18 +42,36 @@ struct PixView: View {
 // MARK: Zoomable image view.
 extension PixView {
     var pixView: some View {
-        GeometryReader { proxy in
-            ScrollView (
-                [.vertical, .horizontal],
-                showsIndicators: false){
-                    image?
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .onTapGesture(count: 2, perform: onImageDoubleTapped)
-                        .gesture(zoomGesture)
-                        .frame(width: proxy.size.width * max(minZoomScale, zoomScale))
-                        .frame(maxHeight: .infinity)
-                }
+        ZStack(alignment: .top){
+            GeometryReader { proxy in
+                ScrollView (
+                    [.vertical, .horizontal],
+                    showsIndicators: false){
+                        image?
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: proxy.size.width * max(minZoomScale, zoomScale))
+                            .frame(maxHeight: .infinity)
+                            .onTapGesture(count: 2, perform: onImageDoubleTapped)
+                            .gesture(zoomGesture)
+                    }
+            }
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                Text(pix.pixDescription)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .truncationMode(.tail)
+                    .lineLimit(1)
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
+            .padding(7)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
+            )
+            .opacity(0.9)
+            .cornerRadius(5)
         }
     }
 }
