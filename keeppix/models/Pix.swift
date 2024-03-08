@@ -29,4 +29,9 @@ class Pix {
             self.tags.append(tag.lowercased())
         }
     }
+    
+    func updateViewStats() {
+        viewCount += 1
+        updatedAt = Date.now    
+    }
 }

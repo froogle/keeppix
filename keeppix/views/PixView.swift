@@ -9,8 +9,9 @@ import SwiftUI
 
 // MARK: PixView layout.
 struct PixView: View {
-    @State private var zoomScale: CGFloat = 2
-    @State private var previousZoomScale: CGFloat = 2
+    @Environment(\.modelContext) private var context
+    @State private var zoomScale: CGFloat = 1.5
+    @State private var previousZoomScale: CGFloat = 1.5
     @State private var image: Image?
     
     private let minZoomScale: CGFloat = 1
@@ -56,8 +57,16 @@ extension PixView {
                             .gesture(zoomGesture)
                     }
             }
+            pixOverlay
+        }
+    }
+}
+
+// MARK: Pix info overlay
+extension PixView {
+    var pixOverlay: some View {
+        VStack {
             HStack(alignment: .center, spacing: 0) {
-                Spacer()
                 Text(pix.pixDescription)
                     .font(.headline)
                     .foregroundColor(.white)
@@ -65,16 +74,23 @@ extension PixView {
                     .lineLimit(1)
                 Spacer()
             }
-            .frame(maxWidth: .infinity)
-            .padding(7)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
-            )
-            .opacity(0.9)
-            .cornerRadius(5)
+            HStack(alignment: .center, spacing: 0) {
+                Text("Viewed \(pix.viewCount) times since \(pix.createdAt.formatted(date: .abbreviated, time: .omitted))")
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                Spacer()
+            }
         }
+        .frame(maxWidth: .infinity)
+        .padding(15)
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.blue, .gray]), startPoint: .top, endPoint: .bottom)
+        )
+        .opacity(0.9)
+        .cornerRadius(5)
     }
 }
+
 
 // MARK: Functionality for the PixView
 extension PixView {
@@ -84,6 +100,8 @@ extension PixView {
         } else {
             image = Image(systemName: "photo.artframe")
         }
+        pix.updateViewStats()
+        try? context.save()
     }
     
     func onImageDoubleTapped() {
