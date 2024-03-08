@@ -13,14 +13,16 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var pixs = [Pix]()
     @State private var previewPixs = ArraySlice<Pix>()
+    @State private var sortOrder = "recent"
+    
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
                 HStack(alignment: .top, spacing: 30) {
-                    Button( "Recent", action: {} ).font(.caption)
-                    Button( "Frequent", action: {} ).font(.caption)
-                    Button( "Newest", action: {} ).font(.caption)
+                    Button( "Recent", action: {sortOrder = "recent"} ).font(.caption).foregroundColor( sortOrder == "recent" ? .accentColor : .secondary)
+                    Button( "Frequent", action: {sortOrder = "frequent"} ).font(.caption).foregroundColor( sortOrder == "frequent" ? .accentColor : .secondary)
+                    Button( "Newest", action: {sortOrder = "newest"} ).font(.caption).foregroundColor( sortOrder == "newest" ? .accentColor : .secondary)
                     Spacer()
                 }.padding([.bottom], 10)
                 
