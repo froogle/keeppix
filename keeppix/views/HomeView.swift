@@ -57,7 +57,8 @@ struct HomeView: View {
 // MARK: HomeView functionality
 private extension HomeView {
     func loadPixs() {
-        var fetchDescriptor = FetchDescriptor<Pix>( )
+        var fetchDescriptor = FetchDescriptor<Pix>(sortBy: [SortDescriptor(\.viewCount, order: .reverse)] )
+        
         fetchDescriptor.fetchLimit = 7
         do {
             pixs = try modelContext.fetch(fetchDescriptor)
