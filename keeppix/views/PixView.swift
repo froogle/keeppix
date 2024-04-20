@@ -80,6 +80,12 @@ extension PixView {
                     .foregroundColor(.white)
                 Spacer()
             }
+            HStack(alignment: .center, spacing: 0) {
+                Text("Last updated at \(pix.updatedAt.formatted(date: .abbreviated, time: .omitted))")
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                Spacer()
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(15)

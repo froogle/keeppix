@@ -34,4 +34,8 @@ class Pix {
         viewCount += 1
         updatedAt = Date.now    
     }
+    
+    func updateEditTime() {
+        updatedAt = Date.now
+    }
 }

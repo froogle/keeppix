@@ -10,33 +10,29 @@ import SwiftData
 
 // Mark: HomeView layout
 struct HomeView: View {
-    @Environment(\.modelContext) private var modelContext
-    @State private var pixs = [Pix]()
-    @State private var previewPixs = ArraySlice<Pix>()
-    @State private var sortOrder = "recent"
-    
+    @Environment(\.modelContext) var modelContext
+    @StateObject var state = HomeViewState()
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading){
                 HStack(alignment: .top, spacing: 30) {
-                    Button( "Recent", action: {sortOrder = "recent"} ).font(.caption).foregroundColor( sortOrder == "recent" ? .accentColor : .secondary)
-                    Button( "Frequent", action: {sortOrder = "frequent"} ).font(.caption).foregroundColor( sortOrder == "frequent" ? .accentColor : .secondary)
-                    Button( "Newest", action: {sortOrder = "newest"} ).font(.caption).foregroundColor( sortOrder == "newest" ? .accentColor : .secondary)
+                    Button( "Recent", action: { state.setSortOrder("recent") } ).font(.caption).foregroundColor( state.sortOrder == "recent" ? .accentColor : .secondary)
+                    Button( "Frequent", action: {state.setSortOrder("frequent")} ).font(.caption).foregroundColor( state.sortOrder == "frequent" ? .accentColor : .secondary)
+                    Button( "Newest", action: { state.setSortOrder("newest")} ).font(.caption).foregroundColor( state.sortOrder == "newest" ? .accentColor : .secondary)
                     Spacer()
                 }.padding([.bottom], 10)
                 
-                
-                // TODO: If we don't have any pixs, don't do this...
-                if let pix = pixs.first {
-                    NavigationLink(destination: PixView(pix: pix)) {
-                        ThumbnailView(pix: pix, captionFont: .body)
+                if state.heroPix != nil {
+                    NavigationLink(destination: PixView(pix: state.heroPix!)) {
+                        ThumbnailView(pix: state.heroPix!, captionFont: .body)
                     }
-                    
+                } else {
+                    VStack { Spacer() }
                 }
                 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                    ForEach (previewPixs) { pix in
+                    ForEach (state.previewPixs) { pix in
                         NavigationLink( destination: PixView(pix: pix)) {
                             ThumbnailView(pix: pix, showCaption: false)
                         }
@@ -48,25 +44,10 @@ struct HomeView: View {
             .padding( .all )
         }
         .onAppear {
-            loadPixs()
+            state.setContext(modelContext)
         }
     }
 
-}
-
-// MARK: HomeView functionality
-private extension HomeView {
-    func loadPixs() {
-        var fetchDescriptor = FetchDescriptor<Pix>(sortBy: [SortDescriptor(\.viewCount, order: .reverse)] )
-        
-        fetchDescriptor.fetchLimit = 7
-        do {
-            pixs = try modelContext.fetch(fetchDescriptor)
-            previewPixs = pixs.dropFirst(1)
-        } catch {
-            pixs = []
-        }
-    }
 }
 
 #Preview {

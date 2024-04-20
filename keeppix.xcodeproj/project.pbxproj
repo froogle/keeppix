@@ -13,6 +13,7 @@
 		6F42A1192B44476000B87008 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F42A1182B44476000B87008 /* ListView.swift */; };
 		6F42A11C2B444D4000B87008 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F42A11B2B444D4000B87008 /* ThumbnailView.swift */; };
 		6F42A11E2B454BDA00B87008 /* EditPixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F42A11D2B454BDA00B87008 /* EditPixView.swift */; };
+		6FBD89FF2BD3BB910008F289 /* HomeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD89FE2BD3BB910008F289 /* HomeViewState.swift */; };
 		6FC2075C2B41772100E2918F /* keeppixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC2075B2B41772100E2918F /* keeppixApp.swift */; };
 		6FC207622B41772200E2918F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC207612B41772200E2918F /* Assets.xcassets */; };
 		6FC207652B41772200E2918F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC207642B41772200E2918F /* Preview Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		6F42A1182B44476000B87008 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		6F42A11B2B444D4000B87008 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
 		6F42A11D2B454BDA00B87008 /* EditPixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPixView.swift; sourceTree = "<group>"; };
+		6FBD89FE2BD3BB910008F289 /* HomeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewState.swift; sourceTree = "<group>"; };
 		6FC207582B41772100E2918F /* keeppix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = keeppix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC2075B2B41772100E2918F /* keeppixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keeppixApp.swift; sourceTree = "<group>"; };
 		6FC207612B41772200E2918F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +56,14 @@
 			path = shared;
 			sourceTree = "<group>";
 		};
+		6FBD89FD2BD3BB600008F289 /* viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+				6FBD89FE2BD3BB910008F289 /* HomeViewState.swift */,
+			);
+			path = viewmodels;
+			sourceTree = "<group>";
+		};
 		6FC2074F2B41772000E2918F = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		6FC2075A2B41772100E2918F /* keeppix */ = {
 			isa = PBXGroup;
 			children = (
+				6FBD89FD2BD3BB600008F289 /* viewmodels */,
 				6FC2076D2B42CF7B00E2918F /* views */,
 				6FC2076B2B42CF6100E2918F /* models */,
 				6FC2075B2B41772100E2918F /* keeppixApp.swift */,
@@ -195,6 +206,7 @@
 				6F42A11C2B444D4000B87008 /* ThumbnailView.swift in Sources */,
 				6FC2075C2B41772100E2918F /* keeppixApp.swift in Sources */,
 				6F42A11E2B454BDA00B87008 /* EditPixView.swift in Sources */,
+				6FBD89FF2BD3BB910008F289 /* HomeViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
