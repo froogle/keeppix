@@ -9,8 +9,6 @@ import SwiftData
 
 @MainActor final class HomeViewState : ObservableObject {
     @Published var pixs = [Pix]()
-    @Published var heroPix: Pix?
-    @Published var previewPixs = ArraySlice<Pix>()
     @Published var sortOrder = "recent"
     
     private var modelContext: ModelContext?
@@ -22,13 +20,11 @@ import SwiftData
     func setSortOrder(_ order: String) {
         sortOrder = order
         loadPixs()
-        assignThumbnailPixs()
     }
     
     func setContext(_ context: ModelContext) {
         modelContext = context
         loadPixs()
-        assignThumbnailPixs()
     }
     
     func loadPixs() {
@@ -53,14 +49,5 @@ import SwiftData
         }
     }
     
-    func assignThumbnailPixs() {
-        if !pixs.isEmpty {
-            heroPix = pixs.removeFirst()
-            previewPixs = pixs.prefix(6)
-        } else {
-            heroPix = nil
-            previewPixs = []
-        }
-        
-    }
+
 }
